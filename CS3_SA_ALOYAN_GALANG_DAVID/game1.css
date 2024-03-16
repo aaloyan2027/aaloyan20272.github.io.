@@ -1,0 +1,70 @@
+#gameContainer {
+    position: relative;
+}
+
+body{
+    background-color: #f6d1fa;
+}
+h1 {
+font-family: hexenkotel;
+font-size: 100px;
+font-weight: bold;
+color:rgb(83, 73, 124);
+text-shadow: 0 4px 5px #423e46, 0 0 5px #958597;
+position: absolute;
+top: -10px;
+left: 50%; 
+}
+
+#attemptsLeft {
+position: absolute;
+top: 30px;
+left: 2%;
+font-family: montserrat;
+font-weight: 500;
+font-size:35px;
+}
+
+#gameBoard {
+margin: 0;
+float: right;
+margin-top: 50px;
+margin-right: 100px;
+}
+
+.buttons {
+position:absolute;
+top: 150px;
+left:2%; 
+}
+
+.buttons button {
+width: 220px;
+height: 90px;
+background-color: rgb(133, 119, 189);
+color: white;
+border: none;
+border-radius: 30px;
+font-family: hexenkotel;
+font-size: 40px;
+cursor: pointer;
+transition: background-color 0.3s;
+animation-play-state: paused;
+text-decoration: none;
+line-height: 20px;
+}
+
+button:hover {
+background-color: #313641 ;
+animation: buttonHover 0.5s infinite alternate;
+}
+
+@keyframes buttonHover {
+0% {
+    transform: translateY(0);
+}
+100% {
+    transform: translateY(-10px);
+}
+}
+

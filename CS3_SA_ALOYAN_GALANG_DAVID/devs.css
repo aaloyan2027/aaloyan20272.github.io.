@@ -1,0 +1,136 @@
+.textstyle{
+    background-color: rgb(144, 131, 197);
+    color:aliceblue;
+    font-weight: bold;
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    padding: 5px 100px 5px 15px;
+    font-size: 50px;
+}
+
+.btn-secondary {
+    font-size: 30px;
+    padding: 20px 30px; 
+}
+
+.ha{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: theren;
+    margin-top: 50px;
+    color:rgb(83, 73, 124);
+}
+
+.pro{
+    color: #000000;
+    font-size: 30px;
+    font-weight: 300;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .pros{
+    color:rgb(255, 255, 255)
+  }
+  .pros:hover{
+    color:rgb(53, 49, 70);
+    text-decoration: none;
+  }
+
+h4{
+    text-align: left;
+    margin-left: 65px;
+}
+
+.tipsbox{
+    background-color: rgba(144, 131, 197, 0.603);
+    color:rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 20px;
+    width: auto;
+    height: auto;
+    padding:10px;
+    font-size: 50px;
+}
+img:hover {
+    background-color:rgb(136, 80, 188);
+}
+/*about*/
+.abt {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    padding-top: 100px;
+  }
+  
+  
+  .head{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: theren;
+    color:rgb(83, 73, 124);
+  }
+
+  .head2{
+    font-size: 50px;
+    font-weight: 600;
+    font-family: theren;
+    color:rgb(83, 73, 124);
+  }
+  
+  p {
+    color: #000000;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22px;
+    padding: 10px;
+    margin-left: 10px;
+    text-align: justify;
+  }
+  
+  .row {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .about-col {
+    flex-basis: 31%;
+    background-image: linear-gradient(rgb(183, 202, 226), rgb(233, 199, 248));
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 20px 12px;
+    box-sizing: border-box;
+  }
+  
+  .about-col img {
+    object-fit: contain;
+    width: 100px;
+    height: 200px;
+  }
+  
+  .he3{
+    text-align: center;
+    font-family: theren;
+    font-weight: 600;
+    margin: 10px 0;
+    font-size: 24px;
+  }
+  
+  p {
+    text-align: justify;
+    margin: 9px 0;
+  }
+  
+  .about-col:hover {
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+  }
+  
+  @media (max-width: 700px) {
+    .row {
+      flex-direction: column;
+    }
+  }
+  

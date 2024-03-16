@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="game1.css">
+    <script>
+        var attempts = 0;
+        var maxAttempts = 10;
+        var flippedCards = [];
+        var matchedCards = 0;
+        var cards = [
+            'twilight.jpg', 'rdash.jpg', 'pie.jpg', 'rarity.jpg',
+            'aj.jpg', 'fluttershy.jpg', 'celes.jpg', 'luna.jpg',
+            'twilight.jpg', 'rdash.jpg', 'pie.jpg', 'rarity.jpg',
+            'aj.jpg', 'fluttershy.jpg', 'celes.jpg', 'luna.jpg'
+        ];
+    
+        function shuffleCards() {
+            for (var i = cards.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = cards[i];
+                cards[i] = cards[j];
+                cards[j] = temp;
+            }
+        }
+    
+        function createBoard() {
+            shuffleCards();
+            var gameBoard = document.getElementById('gameBoard');
+            var index = 0;
+            for (var i = 0; i < 2; i++) {
+                var row = document.createElement('tr');
+                for (var j = 0; j < 8; j++) {
+                    var card = document.createElement('td');
+                    card.className = 'card';
+                    card.dataset.index = index;
+                    card.onclick = flipCard;
+                    row.appendChild(card);
+                    index++;
+                }
+                gameBoard.appendChild(row);
+            }
+            updateAttemptsDisplay();
+        }
+    
+        function flipCard() {
+            if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                this.style.background = 'url(' + cards[this.dataset.index] + ') no-repeat';
+                this.style.backgroundSize = 'cover';
+                this.classList.add('flipped');
+                flippedCards.push(this);
+    
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+        }
+    
+        function checkMatch() {
+            var card1 = flippedCards[0];
+            var card2 = flippedCards[1];
+            if (cards[card1.dataset.index] === cards[card2.dataset.index]) {
+                card1.onclick = null;
+                card2.onclick = null;
+                matchedCards += 2;
+                if (matchedCards === cards.length) {
+                    alert('Congratulations! You won!');
+                    resetGame();
+                }
+            } else {
+                card1.style.background = 'url(cover.jpg) no-repeat';
+                card2.style.background = 'url(cover.jpg) no-repeat';
+                card1.style.backgroundSize = 'cover';
+                card2.style.backgroundSize = 'cover';
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                attempts++;
+                updateAttemptsDisplay();
+            }
+            flippedCards = [];
+            if (attempts >= maxAttempts) {
+                gameOver();
+            }
+        }
+    
+        function gameOver() {
+            alert("You lost! Click OK to restart.");
+            resetGame();
+        }
+    
+        function resetGame() {
+            attempts = 0;
+            matchedCards = 0;
+            flippedCards = [];
+            var gameBoard = document.getElementById('gameBoard');
+            gameBoard.innerHTML = '';
+            createBoard();
+        }
+    
+        function updateAttemptsDisplay() {
+            document.getElementById('attemptsLeftNo').innerText = maxAttempts - attempts;
+        }
+    
+        window.onload = createBoard;
+    </script>
+    <style>
+        @font-face {
+            font-family: hexenkotel;
+            src: url('TherenRegular-vmrnE.ttf');
+        }
+        .card {
+            width: 120px;
+            height: 150px;
+            margin: 10px;
+            padding: 2px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 4px 4px #888888;
+            display: inline-block;
+            background: url('cover.jpg') no-repeat;
+            background-size: cover;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .jumbotron {
+            background-image: url('jumbo.svg');
+            background-size: cover;
+            background-position: center;
+            height: 250px;
+            padding-top: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            margin-right: -8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Pony Pairs</h1>
+        <p id="attemptsLeft">Attempts Left: <span id="attemptsLeftNo"></span></p>
+        <div class="buttons">
+            <button onclick="history.back()">Back</button>
+            <button onclick="resetGame()">Reset</button>
+        </div>
+    </div>
+    <div id="gameContainer">
+        <table id="gameBoard"></table>
+    </div>
+</body>
+</html>
